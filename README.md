@@ -1,24 +1,204 @@
-# Yosish Varma Datla
+# Auto Loan Portfolio Analysis
 
-MSIS Candidate | Data & Business Analytics
+An end-to-end data analytics project analyzing auto-loan approval patterns, interest rates, credit risk, defaults, and dealer-level performance.
 
-I'm a graduate student building practical experience in data analysis,
-business intelligence, and data-driven problem solving.
+The project uses Python and Pandas for data generation and preparation, SQLite and SQL for analysis, and Power BI for visualization.
 
-## Skills
+## Project Objectives
 
-- SQL
+This project addresses the following business questions:
+
+- How do credit-score bands affect loan approval rates?
+- How do credit scores relate to average interest rates?
+- Which credit-score bands have the highest default rates?
+- Which dealer partners show the highest default risk?
+- What data-quality issues must be addressed before reporting?
+- How can portfolio metrics support lending and risk-management decisions?
+
+## Tools and Technologies
+
 - Python
 - Pandas
-- Excel
+- SQLite
+- SQL
 - Power BI
-- Data Analysis
-- Data Validation
+- Git and GitHub
 
-## Featured Projects
+## Dataset
 
-### Auto Loan Portfolio Analysis
-SQL, Python, Pandas, Power BI
+The project uses a synthetic dataset containing 5,000 auto-loan records.
 
-Portfolio analysis examining approval rates, default risk,
-credit-score segments, and dealer performance.
+The dataset includes fields related to:
+
+- Loan applications
+- Approval status
+- Credit scores
+- Interest rates
+- Loan amounts
+- Default status
+- Dealer partners
+- Applicant and loan characteristics
+
+The data is synthetic and is intended for demonstration and educational purposes only. It does not represent real customers or financial institutions.
+
+## Project Workflow
+
+### 1. Generate the data
+
+The `01_generate_data.py` script creates the synthetic auto-loan dataset.
+
+```bash
+python 01_generate_data.py
+```
+
+### 2. Clean and prepare the data
+
+The `03_clean_data.py` script checks for data-quality issues, including:
+
+- Duplicate records
+- Missing values
+- Inconsistent values
+- Formatting issues
+
+```bash
+python 03_clean_data.py
+```
+
+The cleaned dataset is saved as:
+
+```text
+auto_loan_data_clean.csv
+```
+
+### 3. Analyze the data with SQL
+
+The `02_sql_analysis.py` script loads the data into SQLite and performs SQL-based analysis.
+
+```bash
+python 02_sql_analysis.py
+```
+
+The SQLite database is saved as:
+
+```text
+auto_loans.db
+```
+
+## Key Findings
+
+### Credit-score and approval patterns
+
+Loan approval rates varied substantially across the five credit-score bands, ranging from approximately 17.7% to 91.1%.
+
+Higher-credit-score groups generally experienced:
+
+- Higher approval rates
+- Lower average interest rates
+- Lower default rates
+
+Average interest rates ranged from approximately 11.5% in the highest-risk band to 5.6% in the lowest-risk band.
+
+### Default risk by credit-score band
+
+Among approved loans, default rates varied from approximately 9.6% to 20.5%.
+
+This represents nearly a twofold difference between the lowest- and highest-risk credit-score groups.
+
+### Dealer-level risk
+
+The analysis ranked 15 dealer partners by default rate.
+
+The highest-risk dealer had a default rate of approximately 19.6%, compared with approximately 10.9% for the lowest-risk dealer.
+
+This difference suggests that dealer-level monitoring may provide additional insight beyond applicant-level credit metrics.
+
+## Power BI Dashboard
+
+The Power BI dashboard presents interactive views of:
+
+- Total loan applications
+- Approval rate
+- Default rate
+- Average interest rate
+- Credit-score segmentation
+- Default rates by credit-score band
+- Dealer-level default performance
+
+During dashboard validation, a calculation issue affecting the default-rate metric was identified and corrected.
+
+dashboard screenshot here:
+<img width="1710" height="787" alt="1-re" src="https://github.com/user-attachments/assets/7d314641-4125-4b95-8ace-2c313e07f8f8" />
+<img width="952" height="572" alt="4-re" src="https://github.com/user-attachments/assets/b349d986-f855-435c-ad59-3f387d6ada1d" />
+<img width="1047" height="822" alt="3-re" src="https://github.com/user-attachments/assets/8b0d1680-30fa-4067-938c-558768c19961" />
+<img width="1056" height="780" alt="2-re" src="https://github.com/user-attachments/assets/5a4a3fb1-d146-45ac-81ac-45c6a93d06e9" />
+
+
+```text
+
+```
+
+## Repository Structure
+
+```text
+auto-loan-portfolio-analysis/
+│
+├── 01_generate_data.py
+├── 02_sql_analysis.py
+├── 03_clean_data.py
+├── auto_loan_data.csv
+├── auto_loan_data_clean.csv
+├── auto_loans.db
+└── README.md
+```
+
+## How to Run the Project
+
+Clone the repository:
+
+```bash
+git clone https://github.com/yosishv/auto-loan-portfolio-analysis.git
+cd auto-loan-portfolio-analysis
+```
+
+Install the required Python packages:
+
+```bash
+pip install pandas
+```
+
+Run the scripts in this order:
+
+```bash
+python 01_generate_data.py
+python 03_clean_data.py
+python 02_sql_analysis.py
+```
+
+## Business Applications
+
+The analysis could support:
+
+- Credit-risk segmentation
+- Loan approval policy evaluation
+- Interest-rate analysis
+- Dealer performance monitoring
+- Portfolio-risk reporting
+- Data-quality improvement
+- Management dashboard development
+
+## Limitations
+
+- The dataset is synthetic.
+- Results should not be used for real lending decisions.
+- The analysis does not include production-level credit underwriting variables.
+- Observed relationships do not necessarily indicate causation.
+- The dashboard file is not included unless separately added to the repository.
+
+## Author
+
+**Yosish Varma Datla**
+
+MSIS Candidate | Data and Business Analytics | SQL | Python | Power BI
+
+- GitHub: [yosishv](https://github.com/yosishv)
+- LinkedIn: [yosish-v-625647a1](https://linkedin.com/in/yosish-v-625647a1)
