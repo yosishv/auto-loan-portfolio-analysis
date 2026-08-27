@@ -127,10 +127,10 @@ The Power BI dashboard presents interactive views of:
 During dashboard validation, a calculation issue affecting the default-rate metric was identified and corrected.
 
 dashboard screenshot here:
-<img width="1710" height="787" alt="1-re" src="https://github.com/user-attachments/assets/7d314641-4125-4b95-8ace-2c313e07f8f8" />
-<img width="952" height="572" alt="4-re" src="https://github.com/user-attachments/assets/b349d986-f855-435c-ad59-3f387d6ada1d" />
-<img width="1047" height="822" alt="3-re" src="https://github.com/user-attachments/assets/8b0d1680-30fa-4067-938c-558768c19961" />
-<img width="1056" height="780" alt="2-re" src="https://github.com/user-attachments/assets/5a4a3fb1-d146-45ac-81ac-45c6a93d06e9" />
+<img width="1056" height="780" alt="2-re" src="https://github.com/user-attachments/assets/1a006eed-d071-498a-9e84-f57583aaac66" />
+<img width="1067" height="822" alt="4-re" src="https://github.com/user-attachments/assets/7a192634-aa23-4276-b6e7-6af151d62d82" />
+<img width="1047" height="822" alt="3-re" src="https://github.com/user-attachments/assets/02408d72-d1eb-400c-b0a9-867eefd28eae" />
+
 
 
 ```text
