@@ -22,8 +22,3 @@ SQL, Python, Pandas, Power BI
 
 Portfolio analysis examining approval rates, default risk,
 credit-score segments, and dealer performance.
-
-### SMS Phishing Detection
-Python, NLP, DistilBERT
-
-Machine-learning project for SMS phishing classification.
