@@ -16,6 +16,23 @@ class PipelineTest(unittest.TestCase):
         self.assertEqual(totals.defaults.sum(), clean.defaulted.sum())
         self.assertEqual(totals.approved_loans.sum(), clean.approved.sum())
 
+    def test_invalid_input_rejected_with_optimization(self):
+        import subprocess
+        import sys
+        import tempfile
+        from pathlib import Path
+        cleaner = Path('03_clean_data.py').resolve()
+        raw = pd.read_csv('auto_loan_data.csv')
+        for field, value in [('credit_score', 900), ('dealer_id', None), ('approved', 2)]:
+            with self.subTest(field=field), tempfile.TemporaryDirectory() as directory:
+                invalid = raw.copy()
+                invalid.loc[0, field] = value
+                invalid.to_csv(Path(directory) / 'auto_loan_data.csv', index=False)
+                result = subprocess.run([sys.executable, '-O', str(cleaner)], cwd=directory, capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn('ValueError', result.stderr)
+                self.assertFalse((Path(directory) / 'auto_loan_data_clean.csv').exists())
+
     def test_credit_band_boundaries(self):
         scores = [300, 579, 580, 639, 640, 699, 700, 759, 760, 850]
         expected = ['300-579']*2 + ['580-639']*2 + ['640-699']*2 + ['700-759']*2 + ['760-850']*2

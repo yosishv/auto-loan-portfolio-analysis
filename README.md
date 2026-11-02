@@ -1,8 +1,8 @@
 # Auto Loan Portfolio Analysis
 
-An end-to-end data analytics project analyzing auto-loan approval patterns, interest rates, credit risk, defaults, and dealer-level performance.
+A portfolio project using synthetic auto-loan applications to practice data cleaning, SQL reporting, and metric reconciliation.
 
-The project uses Python and Pandas for data generation and preparation, SQLite and SQL for analysis, and Power BI for visualization.
+Python and Pandas prepare the data; SQLite produces reproducible reports. Historical Power BI screenshots are included, with refresh instructions provided separately.
 
 ## Project Objectives
 
@@ -116,7 +116,7 @@ No observation window or loan seasoning is modeled; default is a simulated outco
 
 ## Power BI Dashboard
 
-The Power BI dashboard presents interactive views of:
+The historical Power BI screenshots illustrate:
 
 - Total loan applications
 - Approval rate
@@ -130,32 +130,33 @@ The screenshots below are historical. They have not been revalidated against the
 
 See [Power BI measure definitions](POWER_BI.md) for proposed measures and reconciliation steps.
 
-dashboard screenshot here:
+### Historical screenshots
 <img width="1056" height="780" alt="2-re" src="https://github.com/user-attachments/assets/1a006eed-d071-498a-9e84-f57583aaac66" />
 <img width="1067" height="822" alt="4-re" src="https://github.com/user-attachments/assets/7a192634-aa23-4276-b6e7-6af151d62d82" />
 <img width="1047" height="822" alt="3-re" src="https://github.com/user-attachments/assets/02408d72-d1eb-400c-b0a9-867eefd28eae" />
 
 
 
-```text
 
-```
+## Repository files
 
-## Core repository files
+| File or folder | Purpose |
+| --- | --- |
+| `01_generate_data.py` | Generate synthetic applications and intentional data defects |
+| `03_clean_data.py` | Remove duplicates, impute missing amounts, validate records |
+| `02_sql_analysis.py` | Analyze cleaned input and export reconciled SQL reports |
+| `auto_loan_data.csv` | Raw demonstration input |
+| `auto_loan_data_clean.csv` | Cleaned demonstration input |
+| `reports/` | Data-quality report and segment metrics |
+| `tests/` | Reconciliation and credit-band boundary checks |
+| `POWER_BI.md` | Proposed measures and dashboard verification steps |
+| `requirements.txt` | Python dependencies |
 
-```text
-auto-loan-portfolio-analysis/
-│
-├── 01_generate_data.py
-├── 02_sql_analysis.py
-├── 03_clean_data.py
-├── auto_loan_data.csv
-├── auto_loan_data_clean.csv
-├── auto_loans.db  # generated locally, not versioned
-└── README.md
-```
+`auto_loans.db` is generated locally and excluded from version control.
 
 ## How to Run the Project
+
+Run commands from the repository root using Python 3.10 or newer.
 
 Clone the repository:
 
@@ -197,7 +198,7 @@ The analysis could support:
 - Results should not be used for real lending decisions.
 - The analysis does not include production-level credit underwriting variables.
 - Observed relationships do not necessarily indicate causation.
-- The dashboard file is not included unless separately added to the repository.
+- The Power BI source file is not included; screenshot values have not been revalidated after the pipeline corrections.
 
 ## Author
 

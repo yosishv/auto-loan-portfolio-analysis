@@ -2,6 +2,14 @@ import pandas as pd
 
 # Load the raw messy data
 df = pd.read_csv("auto_loan_data.csv")
+required = {"loan_id", "application_date", "dealer_id", "credit_score", "loan_amount", "loan_term_months", "interest_rate", "approved", "defaulted"}
+missing_columns = required - set(df.columns)
+if missing_columns:
+    raise ValueError(f"Missing required columns: {sorted(missing_columns)}")
+if df.empty:
+    raise ValueError("Input contains no applications")
+if df["dealer_id"].isna().any() or df["dealer_id"].astype(str).str.strip().eq("").any():
+    raise ValueError("Missing dealer ID")
 
 print(f"Starting row count: {len(df)}")
 
@@ -19,9 +27,8 @@ df_clean = df.drop_duplicates().copy()
 print(f"Row count after removing duplicates: {len(df_clean)}")
 
 # --- Step 4: Handle missing loan_amount values ---
-# Instead of deleting rows with missing data (which throws away otherwise-good
-# information about that loan), we fill missing loan_amount with the median
-# loan amount -- a common, defensible approach when values are missing at random.
+# Missing amounts are deliberately injected at random by the generator.
+# Median imputation is an educational assumption, not a billing correction.
 median_amount = df_clean["loan_amount"].median()
 print(f"\nMedian loan amount (used to fill missing values): {median_amount}")
 
@@ -30,15 +37,24 @@ df_clean["loan_amount"] = df_clean["loan_amount"].fillna(median_amount)
 print(f"Missing loan_amount values after cleaning: {df_clean['loan_amount'].isna().sum()}")
 
 # Reject invalid records instead of silently publishing inconsistent metrics.
-assert df_clean["loan_id"].notna().all() and df_clean["loan_id"].is_unique
-assert df_clean["credit_score"].between(300, 850).all()
-assert df_clean["loan_amount"].gt(0).all()
-assert df_clean["loan_term_months"].isin([36, 48, 60, 72]).all()
-assert df_clean["interest_rate"].between(0, 100).all()
-assert df_clean["approved"].isin([0, 1]).all()
-assert df_clean["defaulted"].isin([0, 1]).all()
-assert (df_clean["defaulted"] <= df_clean["approved"]).all()
-assert pd.to_datetime(df_clean["application_date"], errors="coerce").notna().all()
+if not (df_clean["loan_id"].notna().all() and df_clean["loan_id"].is_unique):
+    raise ValueError('Invalid input: df_clean["loan_id"].notna().all() and df_clean["loan_id"].is_unique')
+if not (df_clean["credit_score"].between(300, 850).all()):
+    raise ValueError('Invalid input: df_clean["credit_score"].between(300, 850).all()')
+if not (df_clean["loan_amount"].gt(0).all()):
+    raise ValueError('Invalid input: df_clean["loan_amount"].gt(0).all()')
+if not (df_clean["loan_term_months"].isin([36, 48, 60, 72]).all()):
+    raise ValueError('Invalid input: df_clean["loan_term_months"].isin([36, 48, 60, 72]).all()')
+if not (df_clean["interest_rate"].between(0, 100).all()):
+    raise ValueError('Invalid input: df_clean["interest_rate"].between(0, 100).all()')
+if not (df_clean["approved"].isin([0, 1]).all()):
+    raise ValueError('Invalid input: df_clean["approved"].isin([0, 1]).all()')
+if not (df_clean["defaulted"].isin([0, 1]).all()):
+    raise ValueError('Invalid input: df_clean["defaulted"].isin([0, 1]).all()')
+if not ((df_clean["defaulted"] <= df_clean["approved"]).all()):
+    raise ValueError('Invalid input: (df_clean["defaulted"] <= df_clean["approved"]).all()')
+if not (pd.to_datetime(df_clean["application_date"], errors="coerce").notna().all()):
+    raise ValueError('Invalid input: pd.to_datetime(df_clean["application_date"], errors="coerce").notna().all()')
 from pathlib import Path
 Path("reports").mkdir(exist_ok=True)
 missing_unique = int(df.drop_duplicates()["loan_amount"].isna().sum())

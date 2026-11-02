@@ -1,7 +1,7 @@
 import sqlite3
 import pandas as pd
 
-# Load the CSV we created earlier into a pandas DataFrame
+# Load validated, deduplicated records.
 df = pd.read_csv("auto_loan_data_clean.csv")
 
 # Create (or connect to) a SQL database file called auto_loans.db
@@ -12,8 +12,7 @@ df.to_sql("loans", conn, if_exists="replace", index=False)
 
 print("Data loaded into SQL database successfully.")
 
-# Now let's run our FIRST real SQL query.
-# This asks: "how many loan applications are in the table, total?"
+# Count applications after cleaning.
 query = "SELECT COUNT(*) AS total_loans FROM loans"
 result = pd.read_sql(query, conn)
 print("\nTotal number of loan records:")
@@ -48,7 +47,7 @@ GROUP BY dealer_id
 ORDER BY default_rate_pct DESC
 """
 result3 = pd.read_sql(query3, conn)
-print("\nDealer performance, sorted by default rate (worst first):")
+print("\nDealer performance, sorted by default rate (highest observed rate first):")
 print(result3)
 query4 = """
 SELECT CASE WHEN credit_score < 580 THEN '300-579'
@@ -68,8 +67,12 @@ result2.to_csv("reports/credit_bands.csv", index=False)
 result3.to_csv("reports/dealers.csv", index=False)
 result4.to_csv("reports/defaults_by_credit_band.csv", index=False)
 # Independently reconcile SQL totals with the cleaned input.
-assert result.iloc[0]["total_loans"] == len(df)
-assert result4["applications"].sum() == len(df)
-assert result4["approved_loans"].sum() == df["approved"].sum()
-assert result4["defaults"].sum() == df["defaulted"].sum()
+if result.iloc[0]["total_loans"] != len(df):
+    raise ValueError("SQL application total does not match cleaned input")
+if result4["applications"].sum() != len(df):
+    raise ValueError("Credit-band application totals do not reconcile")
+if result4["approved_loans"].sum() != df["approved"].sum():
+    raise ValueError("Approval totals do not reconcile")
+if result4["defaults"].sum() != df["defaulted"].sum():
+    raise ValueError("Default totals do not reconcile")
 conn.close()
