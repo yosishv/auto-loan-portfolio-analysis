@@ -34,7 +34,7 @@ approved = np.random.binomial(1, approval_prob)
 print(f"\nOverall approval rate: {approved.mean():.1%}")
 
 temp = pd.DataFrame({"credit_score": credit_score, "approved": approved})
-temp["band"] = pd.cut(temp["credit_score"], bins=[300, 580, 640, 700, 760, 850])
+temp["band"] = pd.cut(temp["credit_score"], bins=[300, 580, 640, 700, 760, 851], right=False, labels=["300-579", "580-639", "640-699", "700-759", "760-850"])
 print("\nApproval rate by credit score band:")
 print(temp.groupby("band", observed=True)["approved"].mean())
 
@@ -56,7 +56,7 @@ print(f"\nOverall default rate (among approved loans): {defaulted[approved==1].m
 
 temp2 = pd.DataFrame({"credit_score": credit_score, "approved": approved, "defaulted": defaulted})
 temp2 = temp2[temp2["approved"] == 1]
-temp2["band"] = pd.cut(temp2["credit_score"], bins=[300, 580, 640, 700, 760, 850])
+temp2["band"] = pd.cut(temp2["credit_score"], bins=[300, 580, 640, 700, 760, 851], right=False, labels=["300-579", "580-639", "640-699", "700-759", "760-850"])
 print("\nDefault rate by credit score band (approved loans only):")
 print(temp2.groupby("band", observed=True)["defaulted"].mean())
 
