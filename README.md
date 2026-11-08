@@ -2,7 +2,10 @@
 
 A portfolio project using synthetic auto-loan applications to practice data cleaning, SQL reporting, and metric reconciliation.
 
-Python and Pandas prepare the data; SQLite produces reproducible reports. Historical Power BI screenshots are included, with refresh instructions provided separately.
+Python and Pandas prepare the data; SQLite produces reproducible reports.
+The current numerical results come from the cleaned dataset and exported SQL
+reports. Power BI measures are documented for a future refresh; historical
+screenshots are retained separately as visual references.
 
 ## Project Objectives
 
@@ -87,8 +90,15 @@ auto_loans.db
 
 ## Verified findings
 
-The cleaned dataset has 5,000 unique applications. SQL reports are exported to
-`reports/credit_bands.csv`, `reports/defaults_by_credit_band.csv`, and `reports/dealers.csv`.
+The cleaned dataset contains 5,000 unique applications, 3,212 approved loans,
+and 473 simulated defaults. The approval rate is 64.24%
+(3,212 / 5,000), and the default rate among approved loans is 14.73%
+(473 / 3,212).
+
+SQL reports are exported to `reports/credit_bands.csv`,
+`reports/defaults_by_credit_band.csv`, and `reports/dealers.csv`.
+These reports are the current numerical reference; the historical Power BI
+screenshots have not been reconciled to them.
 
 - Approval rates range from 17.7% to 91.1% by credit band.
 - Mean offered interest rates (all applications) range from 11.54% to 5.63%.
@@ -114,29 +124,38 @@ Approval rate = approvals / applications. Default rate = defaults / approvals.
 Average interest rate describes all application offers, including declined applications.
 No observation window or loan seasoning is modeled; default is a simulated outcome.
 
-## Power BI Dashboard
+## Power BI reporting status
 
-The historical Power BI screenshots illustrate:
+The current portfolio results are supported by the cleaned dataset and
+exported SQL reports. A refreshed Power BI report has not yet been validated,
+and no PBIX file is included in this repository.
 
-- Total loan applications
-- Approval rate
-- Default rate
-- Average interest rate
-- Credit-score segmentation
-- Default rates by credit-score band
-- Dealer-level default performance
+The intended dashboard covers:
 
-The screenshots below are historical. They have not been revalidated against the corrected pipeline. The PBIX file is not included. Use the exported SQL reports as the current numerical reference and refresh Power BI before using screenshots as evidence.
+- Applications and approved loans
+- Approval rate: approvals / applications
+- Simulated defaults and default rate among approved loans
+- Average offered interest rate across all applications, including declines
+- Application volume, approval rates, and default rates by credit band
+- Application volume, approved loans, and default rates by dealer
 
-See [Power BI measure definitions](POWER_BI.md) for proposed measures and reconciliation steps.
+See [Power BI definitions and reconciliation targets](POWER_BI.md) for proposed
+DAX measures, formatting rules, and the checks required before publishing
+refreshed screenshots.
 
-### Historical screenshots
-<img width="1056" height="780" alt="2-re" src="https://github.com/user-attachments/assets/1a006eed-d071-498a-9e84-f57583aaac66" />
-<img width="1067" height="822" alt="4-re" src="https://github.com/user-attachments/assets/7a192634-aa23-4276-b6e7-6af151d62d82" />
-<img width="1047" height="822" alt="3-re" src="https://github.com/user-attachments/assets/02408d72-d1eb-400c-b0a9-867eefd28eae" />
+<details>
+<summary>Historical Power BI screenshots — not validated against current SQL outputs</summary>
 
+These images document an earlier dashboard version. Their values, labels,
+filters, and annotations have not been revalidated against the corrected
+pipeline. Use them only as visual references, not as evidence of current
+portfolio results.
 
+- [Historical screenshot 1](https://github.com/user-attachments/assets/1a006eed-d071-498a-9e84-f57583aaac66)
+- [Historical screenshot 2](https://github.com/user-attachments/assets/7a192634-aa23-4276-b6e7-6af151d62d82)
+- [Historical screenshot 3](https://github.com/user-attachments/assets/02408d72-d1eb-400c-b0a9-867eefd28eae)
 
+</details>
 
 ## Repository files
 
@@ -149,7 +168,7 @@ See [Power BI measure definitions](POWER_BI.md) for proposed measures and reconc
 | `auto_loan_data_clean.csv` | Cleaned demonstration input |
 | `reports/` | Data-quality report and segment metrics |
 | `tests/` | Reconciliation and credit-band boundary checks |
-| `POWER_BI.md` | Proposed measures and dashboard verification steps |
+| `POWER_BI.md` | Proposed Power BI measures, formatting rules, and SQL reconciliation targets; refresh pending |
 | `requirements.txt` | Python dependencies |
 
 `auto_loans.db` is generated locally and excluded from version control.
@@ -198,7 +217,9 @@ The analysis could support:
 - Results should not be used for real lending decisions.
 - The analysis does not include production-level credit underwriting variables.
 - Observed relationships do not necessarily indicate causation.
-- The Power BI source file is not included; screenshot values have not been revalidated after the pipeline corrections.
+- No Power BI source file is included. The proposed DAX has not been executed
+  in Power BI, and historical screenshots have not been reconciled to the
+  corrected SQL outputs.
 
 ## Author
 
