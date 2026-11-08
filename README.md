@@ -4,7 +4,8 @@ A portfolio project using synthetic auto-loan applications to practice data clea
 
 Python and Pandas prepare the data; SQLite produces reproducible reports.
 The current numerical results come from the cleaned dataset and exported SQL
-reports. Power BI measures are documented for a future refresh; historical
+reports. A new [Power BI project](powerbi/README.md) contains the report and model definitions;
+Power BI Desktop refresh and runtime validation are pending. Historical
 screenshots are retained separately as visual references.
 
 ## Project Objectives
@@ -130,6 +131,12 @@ The current portfolio results are supported by the cleaned dataset and
 exported SQL reports. A refreshed Power BI report has not yet been validated,
 and no PBIX file is included in this repository.
 
+A new [three-page Power BI project](powerbi/README.md) is available in `powerbi/`.
+It includes an import model, the six proposed DAX measures, report visuals, and
+validation queries. The source files have been authored; opening, refreshing,
+executing DAX, inspecting the rendered layout, and exporting screenshots in
+Power BI Desktop remain pending.
+
 The intended dashboard covers:
 
 - Applications and approved loans
@@ -168,6 +175,7 @@ portfolio results.
 | `auto_loan_data_clean.csv` | Cleaned demonstration input |
 | `reports/` | Data-quality report and segment metrics |
 | `tests/` | Reconciliation and credit-band boundary checks |
+| `powerbi/` | New three-page Power BI project and semantic model; Desktop validation pending |
 | `POWER_BI.md` | Proposed Power BI measures, formatting rules, and SQL reconciliation targets; refresh pending |
 | `requirements.txt` | Python dependencies |
 

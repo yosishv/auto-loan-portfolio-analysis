@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "CreditBands",
+  "displayName": "Credit-band analysis",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F1F5F9'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "BandSelector",
+      "target": "ApprovalByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSelector",
+      "target": "OfferedRateByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSelector",
+      "target": "BandDetail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApprovalByBand",
+      "target": "BandSelector",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApprovalByBand",
+      "target": "OfferedRateByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApprovalByBand",
+      "target": "BandDetail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "OfferedRateByBand",
+      "target": "BandSelector",
+      "type": "DataFilter"
+    },
+    {
+      "source": "OfferedRateByBand",
+      "target": "ApprovalByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "OfferedRateByBand",
+      "target": "BandDetail",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandDetail",
+      "target": "BandSelector",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandDetail",
+      "target": "ApprovalByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandDetail",
+      "target": "OfferedRateByBand",
+      "type": "DataFilter"
+    }
+  ]
+}

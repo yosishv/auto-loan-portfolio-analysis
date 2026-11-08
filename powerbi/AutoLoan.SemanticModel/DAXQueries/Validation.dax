@@ -1,0 +1,19 @@
+// Run in Power BI DAX query view after refresh. SQL comparison targets: ../../README.md
+EVALUATE
+ROW("Applications", [Applications], "Approved Loans", [Approved Loans], "Defaults", [Defaults],
+    "Approval Rate", [Approval Rate], "Default Rate", [Default Rate Among Approved Loans])
+
+EVALUATE
+SUMMARIZECOLUMNS(loans[Credit Band], "Applications", [Applications], "Approved Loans", [Approved Loans],
+    "Defaults", [Defaults], "Approval Rate", [Approval Rate],
+    "Default Rate", [Default Rate Among Approved Loans], "Offered Rate", [Average Offered Interest Rate])
+ORDER BY loans[Credit Band]
+
+EVALUATE
+SUMMARIZECOLUMNS(loans[dealer_id], "Applications", [Applications], "Approved Loans", [Approved Loans],
+    "Defaults", [Defaults], "Default Rate", [Default Rate Among Approved Loans])
+ORDER BY [Default Rate] DESC
+
+// Expected BLANK: the declined-only filter has zero approvals.
+EVALUATE
+CALCULATETABLE(ROW("Default rate", [Default Rate Among Approved Loans]), loans[approved] = 0)

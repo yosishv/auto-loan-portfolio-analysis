@@ -1,0 +1,217 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.1.0/schema.json",
+  "name": "BandDetail",
+  "position": {
+    "x": 24,
+    "y": 552,
+    "z": 18,
+    "height": 260,
+    "width": 1392,
+    "tabOrder": 18
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Credit-band counts and rates'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#16324F'"
+                    }
+                  }
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Credit Band"
+                }
+              },
+              "queryRef": "loans.Credit Band",
+              "nativeQueryRef": "Credit Band"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Applications"
+                }
+              },
+              "queryRef": "loans.Applications",
+              "nativeQueryRef": "Applications"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Approved Loans"
+                }
+              },
+              "queryRef": "loans.Approved Loans",
+              "nativeQueryRef": "Approved Loans"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Defaults"
+                }
+              },
+              "queryRef": "loans.Defaults",
+              "nativeQueryRef": "Defaults"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Approval Rate"
+                }
+              },
+              "queryRef": "loans.Approval Rate",
+              "nativeQueryRef": "Approval Rate"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Default Rate Among Approved Loans"
+                }
+              },
+              "queryRef": "loans.Default Rate Among Approved Loans",
+              "nativeQueryRef": "Default Rate Among Approved Loans"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "loans"
+                    }
+                  },
+                  "Property": "Average Offered Interest Rate"
+                }
+              },
+              "queryRef": "loans.Average Offered Interest Rate",
+              "nativeQueryRef": "Average Offered Interest Rate"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "loans"
+                  }
+                },
+                "Property": "Credit Band"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
+      }
+    }
+  }
+}

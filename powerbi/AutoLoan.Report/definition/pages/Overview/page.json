@@ -1,0 +1,396 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "Overview",
+  "displayName": "Portfolio overview",
+  "displayOption": "FitToPage",
+  "height": 900,
+  "width": 1440,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'#F1F5F9'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "KPI1",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI1",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI2",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI3",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI4",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI5",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "KPI6",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "ApplicationsByBand",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "DefaultByBand",
+      "target": "BandSummary",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "KPI1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "KPI2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "KPI3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "KPI4",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "KPI5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "KPI6",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "ApplicationsByBand",
+      "type": "DataFilter"
+    },
+    {
+      "source": "BandSummary",
+      "target": "DefaultByBand",
+      "type": "DataFilter"
+    }
+  ]
+}

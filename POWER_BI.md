@@ -5,6 +5,11 @@
 The measures below are proposed definitions for rebuilding or refreshing the
 dashboard. They have not been executed in Power BI. No PBIX file is included.
 
+A new [Power BI project](powerbi/README.md) implements these definitions in an
+import model and three report pages. Set its `DataFilePath` parameter to the
+cleaned CSV before refreshing. Desktop loading, Power Query execution, DAX
+execution, rendered layout inspection, and screenshot export remain pending.
+
 Historical README screenshots have not been reconciled to the corrected SQL
 pipeline. Current numerical results are documented in the exported SQL reports.
 

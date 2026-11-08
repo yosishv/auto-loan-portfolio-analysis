@@ -1,0 +1,142 @@
+{
+  "name": "AutoLoan",
+  "compatibilityLevel": 1600,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "expressions": [
+      {
+        "name": "DataFilePath",
+        "kind": "m",
+        "expression": "\"C:\\AutoLoanPortfolio\\auto_loan_data_clean.csv\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      }
+    ],
+    "tables": [
+      {
+        "name": "loans",
+        "columns": [
+          {
+            "name": "loan_id",
+            "dataType": "string",
+            "sourceColumn": "loan_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "application_date",
+            "dataType": "dateTime",
+            "sourceColumn": "application_date",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "dealer_id",
+            "dataType": "string",
+            "sourceColumn": "dealer_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "credit_score",
+            "dataType": "int64",
+            "sourceColumn": "credit_score",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "loan_amount",
+            "dataType": "double",
+            "sourceColumn": "loan_amount",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "loan_term_months",
+            "dataType": "int64",
+            "sourceColumn": "loan_term_months",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "interest_rate",
+            "dataType": "double",
+            "sourceColumn": "interest_rate",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "approved",
+            "dataType": "int64",
+            "sourceColumn": "approved",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "name": "defaulted",
+            "dataType": "int64",
+            "sourceColumn": "defaulted",
+            "summarizeBy": "none",
+            "isHidden": true
+          },
+          {
+            "type": "calculated",
+            "name": "Credit Band",
+            "dataType": "string",
+            "expression": "SWITCH(TRUE(), loans[credit_score] < 580, \"300-579\", loans[credit_score] < 640, \"580-639\", loans[credit_score] < 700, \"640-699\", loans[credit_score] < 760, \"700-759\", \"760-850\")",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Applications",
+            "expression": "COUNTROWS(loans)",
+            "formatString": "#,0",
+            "displayFolder": "Portfolio metrics"
+          },
+          {
+            "name": "Approved Loans",
+            "expression": "SUM(loans[approved])",
+            "formatString": "#,0",
+            "displayFolder": "Portfolio metrics"
+          },
+          {
+            "name": "Defaults",
+            "expression": "SUM(loans[defaulted])",
+            "formatString": "#,0",
+            "displayFolder": "Portfolio metrics"
+          },
+          {
+            "name": "Approval Rate",
+            "expression": "DIVIDE([Approved Loans], [Applications])",
+            "formatString": "0.00%",
+            "displayFolder": "Portfolio metrics"
+          },
+          {
+            "name": "Default Rate Among Approved Loans",
+            "expression": "DIVIDE([Defaults], [Approved Loans])",
+            "formatString": "0.00%",
+            "displayFolder": "Portfolio metrics"
+          },
+          {
+            "name": "Average Offered Interest Rate",
+            "expression": "DIVIDE(AVERAGE(loans[interest_rate]), 100)",
+            "formatString": "0.00%",
+            "displayFolder": "Portfolio metrics"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "loans",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Csv.Document(File.Contents(DataFilePath), [Delimiter=\",\", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),",
+                "    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
+                "    Typed = Table.TransformColumnTypes(Headers, {{\"loan_id\", type text}, {\"application_date\", type date}, {\"dealer_id\", type text}, {\"credit_score\", Int64.Type}, {\"loan_amount\", type number}, {\"loan_term_months\", Int64.Type}, {\"interest_rate\", type number}, {\"approved\", Int64.Type}, {\"defaulted\", Int64.Type}}, \"en-US\")",
+                "in",
+                "    Typed"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
